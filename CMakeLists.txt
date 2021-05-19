@@ -351,7 +351,10 @@ message(STATUS "Setting Namespace to: ${OSL_NAMESPACE}")
 
 set (CMAKE_MODULE_PATH
      "${PROJECT_SOURCE_DIR}/src/cmake/modules"
-     "${PROJECT_SOURCE_DIR}/src/cmake")
+     "${PROJECT_SOURCE_DIR}/src/cmake"
+     "${PROJECT_SOURCE_DIR}/rez_cmake")
+
+include(rez_cmake)
 
 include (util_macros)
 include (platform)
@@ -423,7 +426,7 @@ endif ()
 set (CMAKE_SKIP_BUILD_RPATH  FALSE)
 # when building, don't use the install RPATH already
 # (but later on when installing)
-set (CMAKE_BUILD_WITH_INSTALL_RPATH FALSE) 
+set (CMAKE_BUILD_WITH_INSTALL_RPATH FALSE)
 # the RPATH to be used when installing
 set (CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
 # add the automatically determined parts of the RPATH
