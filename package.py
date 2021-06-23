@@ -30,13 +30,11 @@ requires = [
 ]
 
 private_build_requires = [
-    "cmake",
-    "gcc",
     "llvm",
 ]
 
 variants = [
-    ["platform-linux", "arch-x86_64", "os-centos-7", "python-2.7", "boost-1.70.0"],
+    ["platform-linux", "arch-x86_64", "os-centos-7", "python-2.7", "boost-1.61.0"],
     ["platform-linux", "arch-x86_64", "os-centos-7", "python-3.7", "boost-1.70.0"],
 ]
 
@@ -44,12 +42,18 @@ build_system = "cmake"
 
 uuid = "repository.OpenShadingLanguage"
 
+# run rez-build -i or rez-release with CMake directives:
+# rez-build -i -- -DBoost_NO_BOOST_CMAKE=On -DBoost_NO_SYSTEM_PATHS=True
+# rez-release -- -DBoost_NO_BOOST_CMAKE=On -DBoost_NO_SYSTEM_PATHS=True
+
+def pre_build_commands():
+    command("source /opt/rh/devtoolset-6/enable")
+
 def commands():
     env.OSL_LOCATION = "{root}"
     env.OSL_ROOT = "{root}"
     env.OSL_INCLUDE_DIR = "{root}/include"
-    env.OSL_LIBRARY_DIR = "{root}/lib"
-    env.LD_LIBRARY_PATH.prepend("{root}/lib")
+    env.OSL_LIBRARY_DIR = "{root}/lib64"
+
+    env.LD_LIBRARY_PATH.prepend("{root}/lib64")
     env.PATH.append("{root}/bin")
-    env.PYTHONPATH.append("{root}/lib/python/")
-    env.PYTHONPATH.append("{root}/lib/python3/")
