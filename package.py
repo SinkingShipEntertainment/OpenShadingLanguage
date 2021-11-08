@@ -25,7 +25,7 @@ with scope("config") as c:
         c.release_packages_path = os.environ["SSE_REZ_REPO_RELEASE_EXT"]
 
 requires = [
-    "openexr-2.2.0",
+    "openexr-2.3.0",
     "oiio-2.1.16.0",
 ]
 
