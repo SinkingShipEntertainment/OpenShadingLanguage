@@ -34,7 +34,7 @@ private_build_requires = [
 ]
 
 variants = [
-    ["platform-linux", "arch-x86_64", "os-centos-7", "boost-1.61.0", "python-2.7.7"],
+    ["platform-linux", "arch-x86_64", "os-centos-7", "boost-1.61.0", "python-2.7.5"],
     ["platform-linux", "arch-x86_64", "os-centos-7", "boost-1.70.0", "python-3.7.7"],
     ["platform-linux", "arch-x86_64", "os-centos-7", "boost-1.70.0", "python-3.9.7"],
 ]
