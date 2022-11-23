@@ -26,7 +26,7 @@ with scope("config") as c:
 
 requires = [
     "openexr-2.4.3",
-    "oiio-2.1.16.0",
+    "oiio-2.1.16.0.sse.2",  # we bumped dependency versions on this .sse.2 version
 ]
 
 private_build_requires = [

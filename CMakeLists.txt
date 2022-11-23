@@ -57,7 +57,7 @@ include (GNUInstallDirs)
 
 list (APPEND CMAKE_MODULE_PATH
       "${PROJECT_SOURCE_DIR}/src/cmake/modules"
-      "${PROJECT_SOURCE_DIR}/src/cmake")
+      "${PROJECT_SOURCE_DIR}/src/cmake"
       "${PROJECT_SOURCE_DIR}/rez_cmake")
 include(rez_cmake)
 
