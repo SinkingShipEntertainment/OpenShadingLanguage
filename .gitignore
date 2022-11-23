@@ -4,3 +4,7 @@ build
 \#*\#
 *.pyc
 *.log
+
+# SSE
+_rez_build
+.vscode
