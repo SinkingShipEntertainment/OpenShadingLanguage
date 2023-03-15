@@ -154,7 +154,10 @@ message(STATUS "Setting Namespace to: ${PROJ_NAMESPACE_V}")
 
 list (APPEND CMAKE_MODULE_PATH
       "${PROJECT_SOURCE_DIR}/src/cmake/modules"
-      "${PROJECT_SOURCE_DIR}/src/cmake")
+      "${PROJECT_SOURCE_DIR}/src/cmake"
+      "${PROJECT_SOURCE_DIR}/rez_cmake")
+
+include(rez_cmake)
 
 # Helpful functions and macros for our project
 include (colors)
@@ -202,7 +205,7 @@ if (CMAKE_COMPILER_IS_INTEL)
 elseif (CMAKE_COMPILER_IS_CLANG OR CMAKE_COMPILER_IS_APPLECLANG OR CMAKE_COMPILER_IS_INTELCLANG)
     add_compile_options("-fno-reciprocal-math")
 endif ()
-       
+
 # Tell CMake to process the sub-directories
 add_subdirectory (src/include)
 add_subdirectory (src/liboslcomp)

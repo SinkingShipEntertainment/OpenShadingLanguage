@@ -11,3 +11,5 @@ build
 .vscode
 .envrc
 
+# SSE
+_rez_build
