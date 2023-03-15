@@ -25,12 +25,11 @@ with scope("config") as c:
         c.release_packages_path = os.environ["SSE_REZ_REPO_RELEASE_EXT"]
 
 requires = [
-    "boost-1.76.0",
+    "pugixml",
+    "pybind11",
     "openexr-3.1.5",
     "oiio-2.3.15.0.sse.2",
-    "pybind11",
     "numpy",
-    "pugixml",
 ]
 
 private_build_requires = [
@@ -38,8 +37,8 @@ private_build_requires = [
 ]
 
 variants = [
-    ["platform-linux", "arch-x86_64", "os-centos-7", "python-3.7.7"],
-    ["platform-linux", "arch-x86_64", "os-centos-7", "python-3.9.7"],
+    ["platform-linux", "arch-x86_64", "os-centos-7", "python-3.7", "boost-1.76.0"],
+    ["platform-linux", "arch-x86_64", "os-centos-7", "python-3.9", "boost-1.76.0"],
 ]
 
 build_system = "cmake"
