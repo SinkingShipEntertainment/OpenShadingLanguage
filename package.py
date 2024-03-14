@@ -14,6 +14,7 @@ with scope("config") as c:
     c.release_packages_path = os.environ["SSE_REZ_REPO_RELEASE_EXT"]
 
 requires = [
+    "pugixml",
     "oiio-2.5.9.0", # it will bring OpenEXR, boost, etc
 ]
 
