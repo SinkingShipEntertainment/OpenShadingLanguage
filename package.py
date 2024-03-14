@@ -1,6 +1,6 @@
 name = "osl"
 
-version = "1.10.9"
+version = "1.13.7.0"
 
 description = \
     """
@@ -14,7 +14,7 @@ with scope("config") as c:
     c.release_packages_path = os.environ["SSE_REZ_REPO_RELEASE_EXT"]
 
 requires = [
-    "oiio-2.3.21.0", # it will bring OpenEXR, boost, etc
+    "oiio-2.5.9.0", # it will bring OpenEXR, boost, etc
 ]
 
 private_build_requires = [
