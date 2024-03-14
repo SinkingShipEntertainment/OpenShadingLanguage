@@ -57,9 +57,13 @@ include (GNUInstallDirs)
 
 list (APPEND CMAKE_MODULE_PATH
       "${PROJECT_SOURCE_DIR}/src/cmake/modules"
-      "${PROJECT_SOURCE_DIR}/src/cmake"
-      "${PROJECT_SOURCE_DIR}/rez_cmake")
-include(rez_cmake)
+      "${PROJECT_SOURCE_DIR}/src/cmake")
+
+# ------------------------------------------------
+# REZ
+# ------------------------------------------------
+set(OPENEXR_HOME $ENV{REZ_OPENEXR_ROOT})
+# ------------------------------------------------
 
 include (platform)
 include (compiler)   # All the C++ and compiler related options live here
@@ -85,7 +89,7 @@ option (VERBOSE "Print lots of messages while compiling" OFF)
 set (${PROJ_NAME}_NAMESPACE ${PROJECT_NAME} CACHE STRING "Customized outer namespace base name (version will be added)")
 set (SOVERSION ${OSL_VERSION_MAJOR}.${OSL_VERSION_MINOR}
      CACHE STRING "Set the SO version in the SO name of the output library")
-option (OSL_BUILD_TESTS "Build the unit tests, testshade, testrender" ON)
+option (OSL_BUILD_TESTS "Build the unit tests, testshade, testrender" OFF)  # Marcelo: was ON
 if (WIN32)
     option (USE_LLVM_BITCODE "Generate embedded LLVM bitcode" OFF)
 else ()

@@ -10,32 +10,19 @@ description = \
     """
 
 with scope("config") as c:
-    # Determine location to release: internal (int) vs external (ext)
-
-    # NOTE: Modify this variable to reflect the current package situation
-    release_as = "ext"
-
-    # The `c` variable here is actually rezconfig.py
-    # `release_packages_path` is a variable defined inside rezconfig.py
-
     import os
-    if release_as == "int":
-        c.release_packages_path = os.environ["SSE_REZ_REPO_RELEASE_INT"]
-    elif release_as == "ext":
-        c.release_packages_path = os.environ["SSE_REZ_REPO_RELEASE_EXT"]
+    c.release_packages_path = os.environ["SSE_REZ_REPO_RELEASE_EXT"]
 
 requires = [
-    "openexr-2.4.3",
-    "oiio-2.1.16.0.sse.2",  # we bumped dependency versions on this .sse.2 version
+    "oiio-2.3.21.0", # it will bring OpenEXR, boost, etc
 ]
 
 private_build_requires = [
-    "llvm",
 ]
 
 variants = [
-    ["platform-linux", "arch-x86_64", "os-centos-7", "boost-1.70.0", "python-3.7"],
-    ["platform-linux", "arch-x86_64", "os-centos-7", "boost-1.70.0", "python-3.9"],
+    ["python-3.7"],
+    ["python-3.9"],
 ]
 
 build_system = "cmake"
@@ -46,7 +33,23 @@ uuid = "repository.OpenShadingLanguage"
 # rez-release -- -DBoost_NO_BOOST_CMAKE=On -DBoost_NO_SYSTEM_PATHS=True
 
 def pre_build_commands():
-    command("source /opt/rh/devtoolset-6/enable")
+
+    info = {}
+    with open("/etc/os-release", 'r') as f:
+        for line in f.readlines():
+            if line.startswith('#'):
+                continue
+            line_info = line.replace('\n', '').split('=')
+            if len(line_info) != 2:
+                continue
+            info[line_info[0]] = line_info[1].replace('"', '')
+    linux_distro = info.get("NAME", "centos")
+    print("Using Linux distro: " + linux_distro)
+
+    if linux_distro.lower().startswith("centos"):
+        command("source /opt/rh/devtoolset-6/enable")
+    elif linux_distro.lower().startswith("rocky"):
+        pass
 
 
 def commands():
