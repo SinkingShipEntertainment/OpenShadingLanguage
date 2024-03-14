@@ -59,12 +59,6 @@ list (APPEND CMAKE_MODULE_PATH
       "${PROJECT_SOURCE_DIR}/src/cmake/modules"
       "${PROJECT_SOURCE_DIR}/src/cmake")
 
-# ------------------------------------------------
-# REZ
-# ------------------------------------------------
-set(OPENEXR_HOME $ENV{REZ_OPENEXR_ROOT})
-# ------------------------------------------------
-
 include (platform)
 include (compiler)   # All the C++ and compiler related options live here
 
